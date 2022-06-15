@@ -27,9 +27,7 @@
     <div class="nav-logo">Pektaş Kablo </div>
     <ul class="nav-links">
         <li><a href="index.php">Anasayfa</a></li>
-        <li><a href="siparis_listele.php">Sipariş Listele</a></li>
-        <li><a href="#">Siparis </a></li>
-        <li><a href="modal.php">Modal</a></li>
+        <li><a href="siparisgiris.php">Sipariş Girişi</a></li>
         <li><a href="Kullanici_islem.php">Kullanıcı İşlemleri</a></li>
         <li><a href="cikis.php">Çıkış Yap</a></li>
 

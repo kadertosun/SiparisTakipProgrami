@@ -1,8 +1,11 @@
 <?php 
+session_start();
 include 'connection.php';
 
 
-
+if(isset($_SESSION["alert"])){
+  $alert=$_SESSION["alert"];
+}
 
 
 /* alınan siparisno değerine göre  işlem yapıyoruz*/
@@ -40,17 +43,32 @@ else /* veritabınında veri yoksa değerler boş gelir tarih olarak ise bugün�
 
 
 
+
+
 <!-- sayfa başı -->
+<?php
+if(isset ($_SESSION["alert"])){;?>
+<div class="alert alert-<?php echo $_SESSION["alert"] ["type"]; ?>">
+
+  <?php echo $_SESSION["alert"]["message"];?>
+  
+</div>
+<?php unset($_SESSION["alert"]);?>
+
+<?php 
+}
+?>
 
 
 
 <!------------------siparis tarihi, personel ve departman bilgilerinin alındığı master formu ---------------->
+
 <div class="card">
 
    <div class="card-body">
-
-   <form action="" id="masterform" method="POST">
-
+  
+   <form action="mail.php" id="masterform" method="POST">
+  
    <div class="form-row">
 
       <div class="form-group col-md-12">
@@ -99,10 +117,15 @@ else /* veritabınında veri yoksa değerler boş gelir tarih olarak ise bugün�
     </div>
 
   </div>
+
+
 <!---------------------------formdaki verileri input da bulunan siparisno ve tablo adı ile veritabaına gönderip ilgili tabloya kayıt yapar ------------------>
               <input type="text" class="form-control" id="id" name="id" value="<?php echo $_REQUEST['siparis_no'];?> " hidden>
               <input type="text" class="form-control" id="tablo_adi" name="tablo_adi" value="tbl_siparisler" hidden>
-
+              <br>
+              <div class="from-row">
+<button type="submit" class="btn btn-success"> Bildir</button>
+</div>
   </form>
   
   </div>
@@ -139,9 +162,10 @@ else /* veritabınında veri yoksa değerler boş gelir tarih olarak ise bugün�
          
                      siparis_kaydet('id=0&siparis_id=<?php echo $_REQUEST['siparis_no'] ?>&tablo_adi=tbl_siparis_satirlar',<?php echo $_REQUEST['siparis_no'] ?>);"> Ekle 
                      </button>
-                    <a href="mail.php"><button class="btn btn-success">Bildir</button></a>
+                     <a href="mail.php"><button class="btn btn-success" >Bildir</button></a>
        
                     </th>    
+                   
                      
                 </tr>
              <tr>                    
